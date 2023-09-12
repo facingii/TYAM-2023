@@ -1,5 +1,6 @@
 package com.outlook.gonzasosa.firstappdemo;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
@@ -22,8 +23,12 @@ public class MainActivity extends AppCompatActivity {
     EditText edtLastname;
     EditText edtPhone;
 
+    Button btnSearch;
+
     ImageView imageView;
     boolean imageLoaded;
+
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         edtName = findViewById (R.id.edtName);
         edtLastname = findViewById (R.id.edtLastname);
         edtPhone = findViewById (R.id.edtPhone);
+        btnSearch = findViewById(R.id.btnSearch);
 
         Button btnSend = findViewById (R.id.btnSend);
         btnSend.setOnClickListener (view -> Toast.makeText (this, edtName.getText().toString(), Toast.LENGTH_LONG ).show());
@@ -46,6 +52,25 @@ public class MainActivity extends AppCompatActivity {
             imageLoaded = true;
         });
 
+        btnSearch.setOnClickListener(view -> {
+            var editor = preferences.edit();
+            editor.putString (NAME, edtName.getText().toString());
+            editor.putString (LASTNAME, edtLastname.getText().toString());
+            editor.apply();
+        });
+    }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        preferences = getPreferences (MODE_PRIVATE);
+        var editor = preferences.edit ();
+        editor.putString (NAME, edtName.getText().toString ());
+        editor.putString (LASTNAME, edtLastname.getText().toString ());
+        editor.putString (PHONE, edtPhone.getText().toString ());
+        editor.apply ();
     }
 
     @Override
@@ -56,6 +81,27 @@ public class MainActivity extends AppCompatActivity {
         outState.putString (LASTNAME, edtLastname.getText().toString());
         outState.putString (PHONE, edtPhone.getText().toString());
         outState.putBoolean (IMAGELOADED, imageLoaded);
+    }
+
+    @Override
+    protected void onResume () {
+        super.onResume ();
+
+        preferences = getPreferences (MODE_PRIVATE);
+        if (preferences.contains (NAME)) {
+            var name = preferences.getString (NAME, "");
+            edtName.setText (name);
+        }
+
+        if (preferences.contains (LASTNAME)) {
+            var lastname = preferences.getString (LASTNAME, "");
+            edtLastname.setText (lastname);
+        }
+
+        if (preferences.contains (PHONE)) {
+            var phone = preferences.getString (PHONE, "");
+            edtPhone.setText (phone);
+        }
     }
 
     @Override
@@ -71,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         String phone = savedInstanceState.getString (PHONE, "");
         edtPhone.setText (phone);
 
-        Boolean imageLoaded = savedInstanceState.getBoolean (IMAGELOADED, false);
+        boolean imageLoaded = savedInstanceState.getBoolean (IMAGELOADED, false);
         if (imageLoaded) {
             imageView.setImageResource (R.mipmap.ic_launcher_round);
             imageLoaded = true;
