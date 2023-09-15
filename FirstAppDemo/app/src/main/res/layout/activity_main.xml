@@ -42,7 +42,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:layout_weight="1"
-            android:text="Name:"/>
+            android:textSize="24sp"
+            android:text="@string/name"/>
 
         <EditText
             android:id="@+id/edtName"
@@ -61,7 +62,8 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Lastname"
+            android:text="@string/lastname"
+            android:textSize="18sp"
             android:layout_weight="1"/>
 
         <EditText

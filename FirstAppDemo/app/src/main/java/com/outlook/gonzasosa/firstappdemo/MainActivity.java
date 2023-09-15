@@ -1,8 +1,8 @@
 package com.outlook.gonzasosa.firstappdemo;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,13 +14,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    private final static String NAME = "name";
-    private final static String LASTNAME  = "lastname";
-    private final static String PHONE  = "phone";
+    final static String NAME = "name";
+    final static String LASTNAME  = "lastname";
+    final static String PHONE  = "phone";
     private final static String IMAGELOADED = "loaded";
 
     EditText edtName;
-    EditText edtLastname;
+    EditText edtLastName;
     EditText edtPhone;
 
     Button btnSearch;
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView (R.layout.activity_main);
 
         edtName = findViewById (R.id.edtName);
-        edtLastname = findViewById (R.id.edtLastname);
+        edtLastName = findViewById (R.id.edtLastname);
         edtPhone = findViewById (R.id.edtPhone);
         btnSearch = findViewById(R.id.btnSearch);
 
@@ -52,11 +52,13 @@ public class MainActivity extends AppCompatActivity {
             imageLoaded = true;
         });
 
-        btnSearch.setOnClickListener(view -> {
-            var editor = preferences.edit();
-            editor.putString (NAME, edtName.getText().toString());
-            editor.putString (LASTNAME, edtLastname.getText().toString());
-            editor.apply();
+        btnSearch.setOnClickListener (view -> {
+            Intent intent = new Intent (getBaseContext (), DetailsActivity.class);
+            intent.putExtra (NAME, edtName.getText().toString ());
+            intent.putExtra (LASTNAME, edtLastName.getText().toString ());
+            intent.putExtra (PHONE, edtPhone.getText().toString ());
+
+            startActivity (intent);
         });
     }
 
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         preferences = getPreferences (MODE_PRIVATE);
         var editor = preferences.edit ();
         editor.putString (NAME, edtName.getText().toString ());
-        editor.putString (LASTNAME, edtLastname.getText().toString ());
+        editor.putString (LASTNAME, edtLastName.getText().toString ());
         editor.putString (PHONE, edtPhone.getText().toString ());
         editor.apply ();
     }
@@ -78,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
 
         outState.putString (NAME, edtName.getText().toString());
-        outState.putString (LASTNAME, edtLastname.getText().toString());
+        outState.putString (LASTNAME, edtLastName.getText().toString());
         outState.putString (PHONE, edtPhone.getText().toString());
         outState.putBoolean (IMAGELOADED, imageLoaded);
     }
@@ -95,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (preferences.contains (LASTNAME)) {
             var lastname = preferences.getString (LASTNAME, "");
-            edtLastname.setText (lastname);
+            edtLastName.setText (lastname);
         }
 
         if (preferences.contains (PHONE)) {
@@ -112,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         edtName.setText (name);
 
         String lastName = savedInstanceState.getString (LASTNAME, "");
-        edtLastname.setText (lastName);
+        edtLastName.setText (lastName);
 
         String phone = savedInstanceState.getString (PHONE, "");
         edtPhone.setText (phone);

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FirstAppDemo</string>
+    <string name="name">Nom</string>
+    <string name="lastname">Le nom</string>
+    <string name="profile_details">Détails du profil</string>
+    <string name="phone">Téléphone</string>
+    <string name="profile_last_name">Le nom</string>
+    <string name="save">Sauvegarder</string>
+</resources>

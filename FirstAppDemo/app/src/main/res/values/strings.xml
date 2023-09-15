@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">FirstAppDemo</string>
+    <string name="name">Name</string>
+    <string name="lastname">Lastname</string>
+    <string name="profile_details">Profile Details</string>
+    <string name="phone">Phone</string>
+    <string name="profile_last_name">Profile Last Name</string>
+    <string name="save">Save</string>
 </resources>

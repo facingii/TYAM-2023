@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:gravity="center"
+        android:layout_marginTop="80dp"
+        android:text="@string/profile_details"
+        android:textSize="48sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/lblName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvTitle"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="10dp"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:text="@string/name"  />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvTitle"
+        android:layout_toEndOf="@id/lblName"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="60dp"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:hint="@string/name" />
+
+    <TextView
+        android:id="@+id/lblLastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lblName"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="10dp"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:text="@string/lastname" />
+
+    <TextView
+        android:id="@+id/tvLastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvName"
+        android:layout_toEndOf="@id/lblName"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="60dp"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:hint="@string/lastname" />
+
+    <TextView
+        android:id="@+id/lblPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lblLastName"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="10dp"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:text="@string/phone" />
+
+    <TextView
+        android:id="@+id/tvPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvLastName"
+        android:layout_toEndOf="@id/lblName"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="60dp"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:hint="@string/profile_last_name" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
+        android:text="@string/save" />
+
+</RelativeLayout>
